@@ -1,0 +1,134 @@
+/*importação da fonte*/
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+
+/* Alterando a tela */
+body {
+    background-image: url("../images/background.jpg");
+    margin: 0;
+    padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.tela-inteira {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+}
+
+.container-jogo {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.forca-esquerda {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.forca-direita {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section-button,
+.section-score,
+.section-letras-erradas,
+.section-palpite {
+    padding: 0 5rem;
+    margin: 0;
+}
+
+#jogar,
+#novo-jogo {
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Architects Daughter';
+}
+
+#jogar {
+    display: block;
+}
+#novo-jogo {
+    display: none;
+}
+
+table {
+    border: 1px solid gray;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Architects Daughter';
+}
+th,
+td {
+    padding: 5px;
+    font-size: 20px;
+}
+
+.section-letras-erradas {
+    font-size: 20px;
+    font-family: 'Architects Daughter';
+}
+
+.section-palpite {
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+    font-family: 'Architects Daughter';
+}
+
+#palpite-texto {
+    height: 30px;
+    font-size: 20px;
+    font-family: 'Architects Daughter';
+    display: none;
+}   
+
+.section-tema {
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    font-family: 'Architects Daughter';
+}
+
+select {
+    font-size: 20px;
+    font-family: 'Architects Daughter';
+}
+
+.section-palavra-secreta {
+    height: 50px;
+}
+#palavra-secreta {
+    font-size: 35px;
+    font-family: 'Architects Daughter';
+}
+
+.teclado {
+    width: 30px;
+    height: 35px;
+    font-size: 20px;
+    font-family: 'Architects Daughter';
+    margin: 5px;
+    border-radius: 10px;
+}
