@@ -1,25 +1,29 @@
 let vidas = 7;
 
-let arrayPalavras;
+let arrayPalavras = [];
 fetch("palavras.json")
     .then(response => response.json())
     .then(data => {
         arrayPalavras = data;
-        //selecionaPalavra(arrayPalavras);
-        //montarPalavraNaTela();
+        selecionaPalavra(arrayPalavras);
+        montarPalavraNaTela();
     })
 
+let tema;
+let palavraSorteada;
+
 function getTema () {
-    
+    tema = document.getElementById("select-temas").value;
+    return tema;
 }
 
 function selecionaPalavra(arrayPalavras) {
-    const indicePalavra = parseInt(Math.random() * arrayPalavras.length);
-    indiceTema = indiceTema + 1;
-    palavraSorteada = arrayPalavras[indiceTema]["palavra" + (indiceTema + 1)]; //Dúvida com o [i]
-    let palavraIncognita = palavraSorteada.fill('_');
+    getTema();
+    const indicePalavra = parseInt(Math.random() * arrayPalavras[tema].length);
+    palavraSorteada = arrayPalavras[tema][indicePalavra];
+    palavraSorteada = palavraSorteada.toUpperCase();
+    return palavraSorteada;
 }
-
 
 
 function vidasForca () {
@@ -47,11 +51,11 @@ function vidasForca () {
             break;
     }
 }
-
+/*
 function vitoria() {
     alert("ACERTOOOU!");
 }
 
 function derrota(palavra) {
     alert(`ERRRRROOOU!!! A palavra era ${PALAVRA SECRETA}`);
-}
+}*/

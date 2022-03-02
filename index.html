@@ -18,7 +18,7 @@
             
             <div class="forca-esquerda">
                 <section class="section-button">
-                    <button id="jogar">Jogar</button>
+                    <button id="jogar" onclick="selecionaPalavra(arrayPalavras)">Jogar</button>
                     <button id="novo-jogo">Novo Jogo</button>
                 </section>
                 <section class="section-score">
@@ -97,12 +97,7 @@
     
     </div>
 
-    <script>
-        function apertou(id) {
-            let letra = document.getElementById(id).value;
-            alert(letra);
-        }
-    </script>
+    <script src="./forca.js"></script>
 
 
 </body>
