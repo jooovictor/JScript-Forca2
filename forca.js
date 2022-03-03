@@ -1,5 +1,3 @@
-let vidas = 7;
-
 let arrayPalavras = [];
 fetch("palavras.json")
     .then(response => response.json())
@@ -18,6 +16,8 @@ let errou;
 let erros = [];
 let vida = 7;
 let input;
+let vitoria;
+let derrota;
 
 function getTema () {
     tema = document.getElementById("select-temas").value;
@@ -31,7 +31,6 @@ function selecionaPalavra(arrayPalavras) {
     palavraSorteada = palavraSorteada.toUpperCase();
     return defineForca(palavraSorteada);
 }
-
 function defineForca(palavraSorteada) {
     palavraSecreta = palavraSorteada.split("")
     palavraResultado = palavraSecreta.map(char => { return "_"});
@@ -85,9 +84,11 @@ function ativaInput () {
     }
 }
 
-function vidasForca (vidas) {
+}
+
+function vidasForca (vida) {
  
-    switch (vidas) {
+    switch (vida) {        
         case 7:
             document.getElementById('forca-img').src="./assets/images/Forca 0.png";
             break;
@@ -114,20 +115,35 @@ function vidasForca (vidas) {
             break;
     }
 
-    if ( vida < 1) {
+
+    if ( vida == 0) {
         alert('Perdeste');
+        derrota = document.getElementById('derrotas').innerHTML;
+        derrota++;
         vida = 7;
         vidasForca(vida);
         erros = [];
-        errou.innerHTML = erros
-        return selecionaPalavra(arrayPalavras);
+        errou.innerHTML = erros;
+        return selecionaPalavra(arrayPalavras), derrota;
+
     }
 }
+
+function computaVitoria() {
+    if (palavraLimpa.indexOf('_') === -1) {
+        alert('Ganhaste');
+        vitoria = document.getElementById('vitorias').innerHTML;
+        vitoria++;
+        vidasForca(vida);
+        console.log(vitoria);
+        return palavraSorteada, vitoria;
+    }
+}
+
 /*
 function vitoria() {
     alert("ACERTOOOU!");
 }
-
 function derrota(palavra) {
     alert(`ERRRRROOOU!!! A palavra era ${PALAVRA SECRETA}`);
 }*/
@@ -136,7 +152,7 @@ document.onkeyup = (event) => {
     const foco = document.getElementById("palpite-texto")
     if ( foco === document.activeElement) {
         return;
-    }else if (event.key === "Enter") {
+    } else if (event.key === "Enter") {
         selecionaPalavra(arrayPalavras);
         return;
     } else if (event.keyCode == 186) {
@@ -146,7 +162,6 @@ document.onkeyup = (event) => {
     } else if (event.keyCode > 90 || event.keyCode < 65) {
         return;
     }
-
 
     input = event.key;
     recebeLetra(input.toUpperCase());
