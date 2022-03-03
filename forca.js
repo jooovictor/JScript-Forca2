@@ -13,6 +13,11 @@ let tema;
 let palavraSorteada;
 let palavraSecreta = [];
 let palavraResultado = [];
+let underline;
+let errou;
+let erros = [];
+let vida = 7;
+
 function getTema () {
     tema = document.getElementById("select-temas").value;
     return tema;
@@ -30,16 +35,48 @@ function defineForca(palavraSorteada) {
     palavraSecreta = palavraSorteada.split("")
     palavraResultado = palavraSecreta.map(char => { return "_"});
     palavraLimpa = palavraResultado.join("");
-    let underline = document.getElementById('palavra-secreta')
+    underline = document.getElementById('palavra-secreta')
     underline.innerHTML = (palavraLimpa);
     return palavraLimpa, palavraSecreta;
 }
 
+function recebeLetra (letra) {
+    let posicaoLetra = palavraSecreta.indexOf(letra);
+
+    if (palavraResultado.includes(letra)) {
+        alert('Letra ja descoberta');
+        return;
+    } else if ( erros.includes(letra)) {
+        alert('Letra ja descoberta!');
+        return;
+    }
+
+    if (posicaoLetra == -1) {
+        errou = document.getElementById('letras-erradas');
+        erros.push(letra);
+        errou.innerHTML = erros.join(', ');
+        vidasForca(--vida)
+        return;
+    }
+    while (posicaoLetra != -1) {
+        palavraResultado[posicaoLetra] = letra;
+        posicaoLetra = palavraSecreta.indexOf(letra, posicaoLetra + 1);
+        palavraLimpa = palavraResultado.join("");
+        underline = document.getElementById('palavra-secreta')
+        underline.innerHTML = (palavraLimpa);
+        console.log(palavraResultado);
+        console.log(palavraSecreta);
+    }
+    return;
+}
 
 
-
-function vidasForca () {
+function vidasForca (vidas) {
+ 
     switch (vidas) {
+        case 7:
+            document.getElementById('forca-img').src="./assets/images/Forca 0.png";
+            break;
         case 6:
             document.getElementById('forca-img').src="./assets/images/Forca 1.png";
             break;
@@ -62,6 +99,15 @@ function vidasForca () {
             document.getElementById('forca-img').src="./assets/images/Forca 7.png";
             break;
     }
+
+    if ( vida < 1) {
+        alert('Perdeste');
+        vida = 7;
+        vidasForca(vida);
+        erros = [];
+        errou.innerHTML = erros
+        return selecionaPalavra(arrayPalavras);
+    }
 }
 /*
 function vitoria() {
@@ -71,3 +117,15 @@ function vitoria() {
 function derrota(palavra) {
     alert(`ERRRRROOOU!!! A palavra era ${PALAVRA SECRETA}`);
 }*/
+
+document.onkeyup = (event) => {
+    if (event.key === "Enter") {
+        selecionaPalavra(arrayPalavras);
+        return;
+    }
+    if (event.keyCode > 90 || event.keyCode < 65) {
+        return;
+    }
+    let input = event.key;
+    recebeLetra(input.toUpperCase());
+}
