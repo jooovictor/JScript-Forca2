@@ -31,7 +31,6 @@ function selecionaPalavra(arrayPalavras) {
     palavraSorteada = palavraSorteada.toUpperCase();
     return defineForca(palavraSorteada);
 }
-
 function defineForca(palavraSorteada) {
     palavraSecreta = palavraSorteada.split("")
     palavraResultado = palavraSecreta.map(char => { return "_"});
@@ -71,10 +70,28 @@ function recebeLetra (letra) {
     return;
 }
 
+function ativaInput () {
+    const botao = document.getElementById("palpite-sim-button");
+    const palpite = document.getElementById("palpite-texto");
+    const botaoPalpite = document.getElementById('submit-texto');
+    let palpitas = palpite.style.display;
+    if (palpitas == "none") {
+        palpite.style.display = "block";
+        botaoPalpite.style.display = "block";
+    } else {
+        palpite.style.display = "none";
+        botaoPalpite.style.display = "none";
+    }
+}
+
+}
 
 function vidasForca (vida) {
  
-    switch (vida) {
+    switch (vida) {        
+        case 7:
+            document.getElementById('forca-img').src="./assets/images/Forca 0.png";
+            break;
         case 6:
             document.getElementById('forca-img').src="./assets/images/Forca 1.png";
             break;
@@ -98,15 +115,17 @@ function vidasForca (vida) {
             break;
     }
 
+
     if ( vida == 0) {
         alert('Perdeste');
         derrota = document.getElementById('derrotas').innerHTML;
         derrota++;
-        //vida = 7;
+        vida = 7;
         vidasForca(vida);
         erros = [];
         errou.innerHTML = erros;
         return selecionaPalavra(arrayPalavras), derrota;
+
     }
 }
 
@@ -130,17 +149,20 @@ function derrota(palavra) {
 }*/
 
 document.onkeyup = (event) => {
-    if (event.key === "Enter") {
+    const foco = document.getElementById("palpite-texto")
+    if ( foco === document.activeElement) {
+        return;
+    } else if (event.key === "Enter") {
         selecionaPalavra(arrayPalavras);
         return;
     } else if (event.keyCode == 186) {
         input = event.key;
         recebeLetra(input.toUpperCase());
         return;
-    }
-    if (event.keyCode > 90 || event.keyCode < 65) {
+    } else if (event.keyCode > 90 || event.keyCode < 65) {
         return;
     }
+
     input = event.key;
     recebeLetra(input.toUpperCase());
 }

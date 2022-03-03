@@ -57,7 +57,8 @@ h6 {
 }
 
 #jogar,
-#novo-jogo {
+#novo-jogo,
+#submit-texto {
     border-radius: 10px;
     width: 100px;
     height: 40px;
@@ -131,4 +132,25 @@ select {
     font-family: 'Architects Daughter';
     margin: 5px;
     border-radius: 10px;
+}
+
+#submit-texto {
+    display: none;
+    font-weight: 600;
+    font-size: 15px;
+    width: 60px;
+    height: 20px;
+    font-size: 13px;
+    font-family: 'Architects Daughter';
+    margin: 0.5rem;
+}
+
+#palpite-sim-button {
+    font-family: 'Architects Daughter';
+    font-size: 13px;
+    border-radius: 10px;
+    width: 60px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    
 }
