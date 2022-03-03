@@ -6,12 +6,13 @@ fetch("palavras.json")
     .then(data => {
         arrayPalavras = data;
         selecionaPalavra(arrayPalavras);
-        montarPalavraNaTela();
+        
     })
 
 let tema;
 let palavraSorteada;
-
+let palavraSecreta = [];
+let palavraResultado = [];
 function getTema () {
     tema = document.getElementById("select-temas").value;
     return tema;
@@ -22,8 +23,19 @@ function selecionaPalavra(arrayPalavras) {
     const indicePalavra = parseInt(Math.random() * arrayPalavras[tema].length);
     palavraSorteada = arrayPalavras[tema][indicePalavra];
     palavraSorteada = palavraSorteada.toUpperCase();
-    return palavraSorteada;
+    return defineForca(palavraSorteada);
 }
+
+function defineForca(palavraSorteada) {
+    palavraSecreta = palavraSorteada.split("")
+    palavraResultado = palavraSecreta.map(char => { return "_"});
+    palavraLimpa = palavraResultado.join("");
+    let underline = document.getElementById('palavra-secreta')
+    underline.innerHTML = (palavraLimpa);
+    return palavraLimpa, palavraSecreta;
+}
+
+
 
 
 function vidasForca () {
