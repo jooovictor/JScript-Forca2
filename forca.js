@@ -116,11 +116,24 @@ function vidasForca (vidas) {
 
     if ( vida < 1) {
         alert('Perdeste');
+        derrota = document.getElementById("derrotas");
+        derrota++;
         vida = 7;
         vidasForca(vida);
         erros = [];
         errou.innerHTML = erros
-        return selecionaPalavra(arrayPalavras);
+        return selecionaPalavra(arrayPalavras), derrota;
+    }
+}
+
+function computaVitoria() {
+    if (palavraLimpa.indexOf('_') === -1) {
+        alert('Ganhaste');
+        vitoria = document.getElementById('vitorias').innerHTML;
+        vitoria++;
+        vidasForca(vida);
+        console.log(vitoria);
+        return selecionaPalavra(arrayPalavras), vitoria;
     }
 }
 /*
