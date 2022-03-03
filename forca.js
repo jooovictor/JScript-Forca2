@@ -71,6 +71,19 @@ function recebeLetra (letra) {
     return;
 }
 
+function ativaInput () {
+    const botao = document.getElementById("palpite-sim-button");
+    const palpite = document.getElementById("palpite-texto");
+    const botaoPalpite = document.getElementById('submit-texto');
+    let palpitas = palpite.style.display;
+    if (palpitas == "none") {
+        palpite.style.display = "block";
+        botaoPalpite.style.display = "block";
+    } else {
+        palpite.style.display = "none";
+        botaoPalpite.style.display = "none";
+    }
+}
 
 function vidasForca (vidas) {
  
@@ -120,17 +133,21 @@ function derrota(palavra) {
 }*/
 
 document.onkeyup = (event) => {
-    if (event.key === "Enter") {
+    const foco = document.getElementById("palpite-texto")
+    if ( foco === document.activeElement) {
+        return;
+    }else if (event.key === "Enter") {
         selecionaPalavra(arrayPalavras);
         return;
     } else if (event.keyCode == 186) {
         input = event.key;
         recebeLetra(input.toUpperCase());
         return;
-    }
-    if (event.keyCode > 90 || event.keyCode < 65) {
+    } else if (event.keyCode > 90 || event.keyCode < 65) {
         return;
     }
+
+
     input = event.key;
     recebeLetra(input.toUpperCase());
 }
