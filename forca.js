@@ -17,6 +17,7 @@ let underline;
 let errou;
 let erros = [];
 let vida = 7;
+let input;
 
 function getTema () {
     tema = document.getElementById("select-temas").value;
@@ -122,10 +123,14 @@ document.onkeyup = (event) => {
     if (event.key === "Enter") {
         selecionaPalavra(arrayPalavras);
         return;
+    } else if (event.keyCode == 186) {
+        input = event.key;
+        recebeLetra(input.toUpperCase());
+        return;
     }
     if (event.keyCode > 90 || event.keyCode < 65) {
         return;
     }
-    let input = event.key;
+    input = event.key;
     recebeLetra(input.toUpperCase());
 }
