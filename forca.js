@@ -219,7 +219,6 @@ function computaDerrota() {
 
 document.onkeyup = (event) => {
     const foco = document.getElementById("palpite-texto")
-    console.log(event);
     if ( foco === document.activeElement) {
         return;
     } else if (event.key === "Enter") {
