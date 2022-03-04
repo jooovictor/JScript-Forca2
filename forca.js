@@ -66,7 +66,7 @@ function defineForca(palavraSorteada) {
     palavraLimpa = palavraResultado.join("");
     underline = document.getElementById('palavra-secreta')
     underline.innerHTML = (palavraLimpa);
-    return palavraLimpa, palavraSecreta;
+    return palavraLimpa, palavraSecreta, palavraSorteada;
 }
 
 function recebeLetra (letra) {
@@ -118,6 +118,9 @@ function palpite(event) {
     let palpitePalavra = document.getElementById("palpite-texto");
     palpitePalavra = palpitePalavra.value;
     palpitePalavra = palpitePalavra.toUpperCase();
+    if (palpitePalavra !== palavraSorteada) {
+        return computaDerrota();
+    }
     palpitePalavra = palpitePalavra.split('');
     let palpitecerto;
     if (palpitePalavra.length == palavraSecreta.length){
