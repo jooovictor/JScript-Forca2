@@ -20,6 +20,10 @@ let input;
 let vitoria = 0;
 let derrota = 0;
 let desabilita;
+let desabilitaPalpite = document.getElementById("palpite-texto");
+let todos;
+let acabou = false;
+
 const teclado = document.getElementById('teclado_virtual')
 
 let evento = document.getElementById('submit-texto');
@@ -41,6 +45,12 @@ function selecionaPalavra(arrayPalavras) {
     errou.innerHTML = erros;
     vida = 7;
     vidasForca(vida);
+    todos = document.getElementsByClassName('teclado');
+    ativaTeclado(todos);
+    acabou = false;
+    desabilitaPalpite.disabled = false;
+    desabilitaPalpite.value = "";
+    
     
 
     teclado.style.display = 'block';
@@ -71,11 +81,7 @@ function recebeLetra (letra) {
         return;
     }
 
-    if (vida == 0) {
-        computaDerrota();
-    } else if (palavraLimpa.indexOf('_') === -1) {
-        computaVitoria();
-    }
+
 
     if (posicaoLetra == -1) {
         errou = document.getElementById("letras-erradas");
@@ -99,6 +105,7 @@ function recebeLetra (letra) {
     } else if (palavraLimpa.indexOf('_') === -1) {
         computaVitoria();
     }
+
     return;
 }
 
@@ -140,20 +147,20 @@ function ativaInput () {
     const botao = document.getElementById("palpite-sim-button");
     const palpite = document.getElementById("palpite-texto");
     const botaoPalpite = document.getElementById("submit-texto");
-    
     let palpitas = palpite.style.display;
     if (palpitas == "none") {
-
         palpite.style.display = "block";
         botaoPalpite.style.display = "block";
+        return;
     } else {
         palpite.style.display = "none";
         botaoPalpite.style.display = "none";
+        return;
     }
+    return;
 }
 
 function vidasForca (vida) {
- 
     switch (vida) {
         case 7:
             document.getElementById('forca-img').src="./assets/images/Forca 0.png";
@@ -182,49 +189,51 @@ function vidasForca (vida) {
     }
 }
 
+function ativaTeclado (todos) {
+    for (let i = 0; i < todos.length; i++) {
+        todos[i].disabled = false;
+    }
+}
+
 function computaVitoria() {
+    acabou = true;
     vitoriaHTML = document.getElementById("vitorias");
     vitoria++;
     vitoriaHTML.innerHTML = vitoria;
     vidasForca(vida);
     teclado.style.display = 'none';
-    desabilia = false;
+    desabilitaPalpite.disabled = true;
     return alert('Ganhaste');
 }
 
 function computaDerrota() {
+    acabou = true;
     derrotaHTML = document.getElementById('derrotas');
     derrota++;
     derrotaHTML.innerHTML = derrota;
     vidasForca(vida);
     teclado.style.display = "none";
-    
+    desabilitaPalpite.disabled = true;
     return alert('Perdeste troxão, a palavra era: ' + palavraSorteada);
 }
 
-/*
-function vitoria() {
-    alert("ACERTOOOU!");
-}
-function derrota(palavra) {
-    alert(`ERRRRROOOU!!! A palavra era ${PALAVRA SECRETA}`);
-}*/
-
 document.onkeyup = (event) => {
     const foco = document.getElementById("palpite-texto")
+    console.log(event);
     if ( foco === document.activeElement) {
         return;
     } else if (event.key === "Enter") {
         selecionaPalavra(arrayPalavras);
         return;
-    } else if (event.keyCode == 186) {
-        input = event.key;
-        recebeLetra(input.toUpperCase());
-        return;
+    } else if ( event.code === "Space") {
+        location.reload();
     } else if (event.keyCode > 90 || event.keyCode < 65) {
+        return;
+    } else if (acabou == true){
         return;
     }
 
     input = event.key;
     recebeLetra(input.toUpperCase());
 }
+
