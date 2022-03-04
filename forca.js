@@ -115,35 +115,17 @@ function verificaLetraEscolhida(letra) {
 
 function palpite(event) {
     event.preventDefault();
+    let palpitecerto;
     let palpitePalavra = document.getElementById("palpite-texto");
     palpitePalavra = palpitePalavra.value;
     palpitePalavra = palpitePalavra.toUpperCase();
     if (palpitePalavra !== palavraSorteada) {
-        return computaDerrota();
-    }
-    palpitePalavra = palpitePalavra.split('');
-    let palpitecerto;
-    if (palpitePalavra.length == palavraSecreta.length){
-        for (i=0; i <= palpitePalavra.length; i++) {
-            if (palpitePalavra[i] == palavraSecreta[i]) {
-                palpitecerto = true;
-            }
-            else {
-                palpitecerto = false;
-            }
-        }
-    } else {
-        palpitecerto = false;
-    }
-    if (palpitecerto == false) {
         ativaInput();
         return computaDerrota();
     } else {
-        underline.innerHTML = palavraSorteada;
         ativaInput();
         return computaVitoria();
-    }
-    return;
+    };
 }
 
 function ativaInput () {
@@ -200,6 +182,7 @@ function ativaTeclado (todos) {
 
 function computaVitoria() {
     acabou = true;
+    underline.innerHTML = palavraSorteada;
     vitoriaHTML = document.getElementById("vitorias");
     vitoria++;
     vitoriaHTML.innerHTML = vitoria;
@@ -211,6 +194,7 @@ function computaVitoria() {
 
 function computaDerrota() {
     acabou = true;
+    underline.innerHTML = palavraSorteada;
     derrotaHTML = document.getElementById('derrotas');
     derrota++;
     derrotaHTML.innerHTML = derrota;
