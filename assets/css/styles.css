@@ -68,6 +68,7 @@ h6 {
 
 #jogar {
     display: block;
+    height: 70px;
 }
 #novo-jogo {
     display: none;
@@ -131,4 +132,42 @@ select {
     font-family: 'Architects Daughter';
     margin: 5px;
     border-radius: 10px;
+}
+#submit-texto {
+    display: none;
+    font-weight: 600;
+    font-size: 15px;
+    width: 60px;
+    height: 20px;
+    font-size: 13px;
+    font-family: 'Architects Daughter';
+    margin: 0.5rem;
+}
+
+#palpite-sim-button {
+    font-family: 'Architects Daughter';
+    font-size: 13px;
+    border-radius: 10px;
+    width: 60px;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+
+}
+
+.reiniciar {
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+    margin-top: 10%;
+    font-weight: 500;
+    font-size: 20px;
+    font-family: 'Architects Daughter';
+}
+
+.reiniciar {
+    display: block;
+}
+
+#teclado_virtual {
+    display: none;
 }

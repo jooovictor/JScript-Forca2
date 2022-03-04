@@ -18,8 +18,7 @@
             
             <div class="forca-esquerda">
                 <section class="section-button">
-                    <button id="jogar" onclick="selecionaPalavra(arrayPalavras)">Jogar</button>
-                    <button id="novo-jogo">Novo Jogo</button>
+                    <button id="jogar" onclick="selecionaPalavra(arrayPalavras)">Nova Palavra</button>
                 </section>
                 <section class="section-score">
                     <table class="score">
@@ -39,8 +38,11 @@
                 </section>
                 <section class="section-palpite">
                     <h4 class="palpite-titulo">Quer fazer um palpite?</h4>
-                    <input type="checkbox" id="palpite-sim-checkbox"><span>Sim!</span>
-                    <input type="text" id="palpite-texto">
+                    <button id="palpite-sim-button" onclick="ativaInput()">Sim!</button>
+                    <form id="formPalpite">
+                        <input type="text" id="palpite-texto">
+                        <input type="submit" id="submit-texto" onclick="palpite(event)" value="enviar">
+                    </form>
                 </section>
             </div>
 
@@ -66,7 +68,7 @@
 
         </div>
 
-        <div class="teclado_virtual">
+        <div class="teclado_virtual" id="teclado_virtual">
             <button class="teclado" id="button-a" value="a" onclick="recebeLetra('A')">A</button>
             <button class="teclado" id="button-b" value="b" onclick="recebeLetra('B')">B</button>
             <button class="teclado" id="button-c" value="c" onclick="recebeLetra('C')">C</button>
@@ -93,6 +95,10 @@
             <button class="teclado" id="button-x" value="x" onclick="recebeLetra('X')">X</button>
             <button class="teclado" id="button-y" value="y" onclick="recebeLetra('Y')">Y</button>
             <button class="teclado" id="button-z" value="z" onclick="recebeLetra('Z')">Z</button>
+        </div>
+
+        <div>
+            <button id="reiniciar" class="reiniciar">Resetar</button>
         </div>
     
     </div>
